@@ -1,0 +1,172 @@
+    1  groupadd students
+    2  grep students /etc/group
+    3  useradd -u 1234 -g students -m -s /bin/bash user1
+    4  grep user1 /etc/passwd
+    5  passwd user1
+    6  'chage -M 90 user1
+    7  chage -M 90 user1
+    8  chage -l user1
+    9  find / -perm -4000 -type f 2>/dev/null > /root/setuid_files.out
+   10  cat /root/setuid_files.out
+   11  passwd user1
+   12  xdg-open /root/mephi-hw/mephi-screenshot.png
+   13  cp /root/mephi-hw/mephi-screenshot.png /home/admin/
+   14  chown admin:admin /home/admin/mephi-screenshot.png
+   15  echo "M265963"
+   16  import -window root /root/mephi-hw/mephi-screenshot.png
+   17  file /root/mephi-hw/mephi-screenshot.png
+   18  ls -l /root/mephi-hw/mephi-screenshot.png
+   19  gwenview /root/mephi-hw/mephi-screenshot.png &
+   20  ls -l /root/mephi-hw/
+   21  ps -eo pid,ruid,euid,comm | awk '$3 == 0 && $2 != 0' > /root/processes_euid0.out
+   22  cat /root/processes_euid0.out
+   23  su - user1
+   24  cp /bin/cat /home/user1/mycat
+   25  chown root:root /home/user1/mycat
+   26  chmod 4755 /home/user1/mycat
+   27  ls -l /home/user1/mycat
+   28  su - user1
+   29  cp /bin/chown /home/user1/mychown
+   30  setcap cap_chown+ep /home/user1/mychown
+   31  getcap /home/user1/mychown
+   32  su - user1
+   33  visudo
+   34  su - user1
+   35  mkdir -p /root/mephi-hw
+   36  history > /root/mephi-hw/history.out
+   37  stat /home/user1 > /root/mephi-hw/stat.out
+   38  stat /home/user1/mycat >> /root/mephi-hw/stat.out
+   39  stat /home/user1/mychown >> /root/mephi-hw/stat.out
+   40  getcap /home/user1/mychown > /root/mephi-hw/getcap.out
+   41  cp /etc/passwd /root/mephi-hw/passwd
+   42  cp /etc/shadow /root/mephi-hw/shadow
+   43  cp /etc/group  /root/mephi-hw/group
+   44  cp /etc/sudoers /root/mephi-hw/sudoers
+   45  cp /root/setuid_files.out /root/mephi-hw/
+   46  cp /root/processes_euid0.out /root/mephi-hw/
+   47  ls -l /root/mephi-hw/
+   48  echo M265963"
+   49  file /root/mephi-hw/mephi-screenshot.png
+   50  echo "M265963"
+   51  dnf install -y scrot
+   52  scrot /root/mephi-hw/mephi-screenshot.png
+   53  dnf install -y ImageMagick
+   54  import -window root /root/mephi-hw/mephi-screenshot.png
+   55  ls -l /root/mephi-hw/mephi-screenshot.png
+   56  file /root/mephi-hw/mephi-screenshot.png
+   57  su -
+   58  dolphin /root/mephi-hw/ &
+   59  ls /media/
+   60  cp /root/mephi-hw/* /media/sf_mephi-hw/
+   61  cp /root/mephi-hw/* /media/sf_mephi_dz/
+   62  ls -l /media/sf_mephi_dz/
+   63  lsblk
+   64  parted /dev/sdb mklabel gpt
+   65  parted /dev/sdb mkpart primary ext4 0% 100%
+   66  lsblk
+   67  mkfs.ext4 -L MEPHI_WEB /dev/sdb1
+   68  blkid /dev/sdb1
+   69  mkdir -p /mephi-web
+   70  echo 'LABEL=MEPHI_WEB  /mephi-web  ext4  defaults  0 0' >> /etc/fstab
+   71  tail -3 /etc/fstab
+   72  mount -a
+   73  df -h /mephi-web
+   74  mount | grep mephi-web
+   75  stat /mephi-web >> /root/stat.out
+   76  cat /root/stat.out
+   77  systemctl start nginx
+   78  systemctl enable nginx
+   79  systemctl status nginx
+   80  q
+   81  journalctl -u nginx -b > /root/journalctl.out
+   82  head -20 /root/journalctl.out
+   83  groupadd mephi-team
+   84  groupadd -g 4444 curators
+   85  useradd -u 5501 -G mephi-team -m -s /bin/bash user1
+   86  useradd -u 5502 -G mephi-team -m -s /bin/bash user2
+   87  useradd -u 5503 -G mephi-team -m -s /bin/bash user3
+   88  userdel -r user1
+   89  useradd -u 5501 -G mephi-team -m -s /bin/bash user1
+   90  grep -E 'user1|user2|user3' /etc/passwd
+   91  echo "user1:User1Pass123" | chpasswd
+   92  echo "user2:User2Pass123" | chpasswd
+   93  echo "user3:User3Pass123" | chpasswd
+   94  useradd -G curators -m -s /bin/bash curator1
+   95  useradd -G curators -m -s /bin/bash curator2
+   96  echo "curator1:Cur1Pass12345" | chpasswd
+   97  echo "curator2:Cur2Pass12345" | chpasswd
+   98  mkdir -p /data/mephi-2026
+   99  chown root:mephi-team /data/mephi-2026
+  100  chmod 2770 /data/mephi-2026
+  101  setfacl -R -m g:curators:r-x /data/mephi-2026
+  102  setfacl -R -d -m g:curators:r-x /data/mephi-2026
+  103  ls -ld /data/mephi-2026
+  104  getfacl /data/mephi-2026
+  105  stat /data/mephi-2026 >> /root/stat.out
+  106  su - user1 -c 'echo "file from user1" > /data/mephi-2026/test1.txt'
+  107  ls -l /data/mephi-2026/
+  108  su - user2 -c 'cat /data/mephi-2026/test1.txt'
+  109  su - user2 -c 'echo "add from user2" >> /data/mephi-2026/test1.txt'
+  110  su - curator1 -c 'cat /data/mephi-2026/test1.txt'
+  111  su - curator1 -c 'echo "hack" >> /data/mephi-2026/test1.txt'
+  112  ls -l /usr/sbin/tcpdump
+  113  getcap /usr/sbin/tcpdump
+  114  setcap cap_net_raw,cap_net_admin+ep /usr/sbin/tcpdump
+  115  getcap /usr/sbin/tcpdump
+  116  sudo -u user1 timeout 3 tcpdump -i enp0s3 -c 2
+  117  getcap /usr/sbin/tcpdump > /root/getcap.out
+  118  cat /root/getcap.out
+  119  getenforce
+  120  grep '^SELINUX=' /etc/selinux/config
+  121  ls -Zd /mephi-web
+  122  getenforce
+  123  semanage fcontext -a -t httpd_sys_content_t "/mephi-web(/.*)?"
+  124  restorecon -R -v /mephi-web
+  125  ls -Zd /mephi-web
+  126  getenforce > /root/getenforce.out
+  127  cat /root/getenforce.out
+  128  usermod -s /sbin/nologin curator1
+  129  usermod -s /sbin/nologin curator2
+  130  grep -E 'curator1|curator2' /etc/passwd
+  131  for user in user1 user2 user3 curator1 curator2; do   chage -M 90 $user; done
+  132  chage -l user1
+  133  nano /etc/security/pwquality.conf
+  134  grep '^minlen' /etc/security/pwquality.conf
+  135  grep -i minlen /etc/security/pwquality.conf
+  136  sed -i 's/^ *minlen *=.*/minlen = 12/' /etc/security/pwquality.conf
+  137  grep '^minlen' /etc/security/pwquality.conf
+  138  usermod -s /sbin/nologin curator1
+  139  grep -E 'curator1|curator2' /etc/passwd
+  140  chage -l user1
+  141  echo "Hello from Student: M265963" > /mephi-web/index.html
+  142  cat /mephi-web/index.html
+  143  ls -Z /mephi-web/index.html
+  144  curl http://localhost/
+  145  reset
+  146  nano /etc/nginx/nginx.conf
+  147  nginx -t
+  148  systemctl reload nginx
+  149  curl http://localhost/
+  150  curl http://localhost/ > /root/curl.out
+  151  cat /root/curl.out
+  152  curl http://localhost/
+  153  import -window root /root/mephi-screenshot.png
+  154  file /root/mephi-screenshot.png
+  155  mkdir -p /root/mephi-project
+  156  cp /root/ping.out        /root/mephi-project/
+  157  cp /root/history.out     /root/mephi-project/
+  158  cp /root/dnf.out         /root/mephi-project/
+  159  cp /root/stat.out        /root/mephi-project/
+  160  cp /root/journalctl.out  /root/mephi-project/
+  161  cp /root/getcap.out      /root/mephi-project/
+  162  cp /root/getenforce.out  /root/mephi-project/
+  163  cp /root/curl.out        /root/mephi-project/
+  164  cp /root/mephi-screenshot.png /root/mephi-project/
+  165  # Системные файлы
+  166  cp /etc/fstab                     /root/mephi-project/fstab
+  167  cp /etc/passwd                    /root/mephi-project/passwd
+  168  cp /etc/shadow                    /root/mephi-project/shadow
+  169  cp /etc/group                     /root/mephi-project/group
+  170  cp /etc/security/pwquality.conf   /root/mephi-project/pwquality.conf
+  171  ls -l /root/mephi-project/
+  172  history > /root/mephi-project/history.out

@@ -1,0 +1,10 @@
+Иденти | Командная строка                                        | Дата и время     | Действия       | Изменен
+--------------------------------------------------------------------------------------------------------------
+     8 | install -y /tmp/tcpdump-4.99.5-1.red80.i686.rpm /tmp/tc | 2026-10-15 15:58 | Install        |   11   
+     7 | install -y nginx libcap-ng-utils                        | 2026-10-15 15:55 | Install        |    5   
+     6 | update -y                                               | 2026-10-15 15:51 | I, O, U        |  281 EE
+     5 | install -y ImageMagick                                  | 2026-10-14 17:00 | Install        |    7   
+     4 | install -y scrot                                        | 2026-10-14 16:58 | Install        |    7   
+     3 | autoremove -y --setopt=metadata_expire=-1               | 2026-10-14 15:52 | Removed        |    1  <
+     2 | remove -y --setopt=metadata_expire=-1 open-vm-tools spi | 2026-10-14 15:51 | Removed        |    2 >E
+     1 |                                                         | 2026-10-14 15:41 | Install        | 1742 EE
