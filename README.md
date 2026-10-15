@@ -1,1 +1,0 @@
-# mephi-session-project-2026
